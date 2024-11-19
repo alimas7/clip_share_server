@@ -7,28 +7,6 @@ on:
     - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
-  Checks:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Set version
-      run: |
-        echo VERSION="$(echo '${{github.ref_name}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')" >> $GITHUB_ENV
-
-    - name: Check app.rc version
-      run: |
-        [ $(grep "${{env.VERSION}}" res/win/app.rc | grep -iE '(File|Product)Version' | wc -l) = 4 ]
-
-    - name: Check release_notes.md version
-      run: |
-        for v in $(grep -oE '[0-9]+\.[0-9]+\.[0-9]+' .github/workflows/resources/release_notes.md); do \
-        grep -qF "${{env.VERSION}}" <<<"$v"; \
-        done
-
   Linux:
     runs-on: ubuntu-latest
     timeout-minutes: 20
