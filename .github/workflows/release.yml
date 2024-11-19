@@ -15,14 +15,6 @@ jobs:
     - name: Set version
       run: echo VERSION="$(date +'%Y%m%d.%H%M.%S')" >> $GITHUB_ENV
 
-  Build-and-Test:
-    uses: ./.github/workflows/build-test.yml
-    permissions:
-      contents: write
-      pull-requests: write
-      security-events: write
-    needs: Checks
-
   Linux:
     runs-on: ubuntu-latest
     timeout-minutes: 20
