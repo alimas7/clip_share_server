@@ -1,5 +1,5 @@
 name: Create-Release
-run-name: Create release ${{steps.date.outputs.date}}
+run-name: Create release "$VRSI"
 
 on: workflow_dispatch
 
