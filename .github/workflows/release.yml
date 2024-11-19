@@ -3,23 +3,13 @@ run-name: Create release mutter-frakker
 
 on: workflow_dispatch
 
+env:
+  VERSION: "$(date +'%Y%m%d.%H%M.%S')"
+
 jobs:
-  Checks:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Set version
-      run: echo VERSION="$(date +'%Y%m%d.%H%M.%S')" >> $GITHUB_ENV
-
   Linux:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs:
-    - Checks
 
     steps:
     - name: Check out repository code
@@ -27,7 +17,6 @@ jobs:
 
     - name: Set version
       run: |
-        echo VERSION="$(date +'%Y%m%d.%H%M.%S')" >> $GITHUB_ENV
         version="${{env.VERSION}}"
         archive="clip_share_server-${version}-linux_x86_64"
         echo ARCHIVE_NAME_NO_EXT="${archive}" >> $GITHUB_ENV
@@ -75,7 +64,6 @@ jobs:
 
     - name: Set variables
       run: |
-        echo VERSION="$(date +'%Y%m%d.%H%M.%S')" >> $GITHUB_ENV
         version="${{env.VERSION}}"
         echo TAG="v${version}" >> $GITHUB_ENV
         echo TITLE="Version ${version}" >> $GITHUB_ENV
