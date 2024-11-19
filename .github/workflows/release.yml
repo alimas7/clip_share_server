@@ -4,7 +4,7 @@ run-name: Create release mutter-frakker
 on: workflow_dispatch
 
 env:
-  VERSION: "${{date +'%Y%m%d.%H%M.%S'}}"
+  run: echo "VERSION=${{date +'%Y%m%d.%H%M.%S'}}" >> $GITHUB_ENV
 
 jobs:
   Linux:
