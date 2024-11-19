@@ -15,8 +15,11 @@ jobs:
     - name: Pre-Set VERSION
       run: |
         VERSION=$(date +'%Y%m%d.%H%M.%S')
-        echo "VERSION=${VERSION}" >> $GITHUB_ENV
-        echo "${VERSION}" >> my_env/my_vers.txt
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "$VERSION" >> my_vers.txt
+      with:
+        name: my_env
+        path: my_vars.txt
 
     - name: Set version
       run: |
