@@ -35,6 +35,7 @@ jobs:
 
     - name: Set version
       run: |
+        echo VERSION="$(date +'%Y%m%d.%H%M.%S')" >> $GITHUB_ENV
         version="${{env.VERSION}}"
         archive="clip_share_server-${version}-linux_x86_64"
         echo ARCHIVE_NAME_NO_EXT="${archive}" >> $GITHUB_ENV
@@ -82,6 +83,7 @@ jobs:
 
     - name: Set variables
       run: |
+        echo VERSION="$(date +'%Y%m%d.%H%M.%S')" >> $GITHUB_ENV
         version="${{env.VERSION}}"
         echo TAG="v${version}" >> $GITHUB_ENV
         echo TITLE="Version ${version}" >> $GITHUB_ENV
