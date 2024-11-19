@@ -1,10 +1,7 @@
 name: Create-Release
-run-name: Create release ${{github.ref_name}}
+run-name: Create release ${{steps.date.outputs.date}}
 
 on: workflow_dispatch
-  push:
-    tags:
-    - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   Checks:
@@ -15,9 +12,13 @@ jobs:
     - name: Check out repository code
       uses: actions/checkout@v4
 
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y%m%d.%H%M.%S')"
+        
     - name: Set version
       run: |
-        echo VERSION="$(echo '${{github.ref_name}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')" >> $GITHUB_ENV
+        echo VERSION="$(echo '${{steps.date.outputs.date}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')" >> $GITHUB_ENV
 
     - name: Check app.rc version
       run: |
@@ -50,7 +51,7 @@ jobs:
 
     - name: Set version
       run: |
-        version="$(echo '${{github.ref_name}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
+        version="$(echo '${{steps.date.outputs.date}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
         archive="clip_share_server-${version}-linux_x86_64"
         echo ARCHIVE_NAME_NO_EXT="${archive}" >> $GITHUB_ENV
         echo ARCHIVE_NAME="${archive}.tar.gz" >> $GITHUB_ENV
@@ -97,7 +98,7 @@ jobs:
 
     - name: Set variables
       run: |
-        version="$(echo '${{github.ref_name}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
+        version="$(echo '${{steps.date.outputs.date}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
         echo VERSION="$version" >> $GITHUB_ENV
         echo TAG="v${version}" >> $GITHUB_ENV
         echo TITLE="Version ${version}" >> $GITHUB_ENV
