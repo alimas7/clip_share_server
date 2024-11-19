@@ -20,6 +20,8 @@ jobs:
 
     - name: Set version
       run: |
+        pwd
+        cat my_vers.txt
         version="${{env.VERSION}}"
         archive="clip_share_server-${version}-linux_x86_64"
         echo ARCHIVE_NAME_NO_EXT="${archive}" >> $GITHUB_ENV
@@ -67,6 +69,8 @@ jobs:
 
     - name: Set variables
       run: |
+        pwd
+        cat my_vers.txt
         version=$(cat my_vers.txt)
         echo TAG="v${version}" >> $GITHUB_ENV
         echo TITLE="Version ${version}" >> $GITHUB_ENV
