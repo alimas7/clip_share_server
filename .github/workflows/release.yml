@@ -28,7 +28,6 @@ jobs:
     timeout-minutes: 20
     needs:
     - Checks
-    - Build-and-Test
 
     steps:
     - name: Check out repository code
