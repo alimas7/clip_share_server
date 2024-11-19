@@ -14,11 +14,11 @@ jobs:
 
     - name: Get current date
       id: date
-      run: echo "::set-output name=date::$(date +'%Y%m%d.%H%M.%S')"
+      run: echo VRSI="$(date +'%Y%m%d.%H%M.%S')" >> $GITHUB_ENV
         
     - name: Set version
       run: |
-        echo VERSION="$(echo '${{steps.date.outputs.date}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')" >> $GITHUB_ENV
+        echo VERSION="$VRSI" >> $GITHUB_ENV
 
     - name: Check app.rc version
       run: |
@@ -51,8 +51,9 @@ jobs:
 
     - name: Set version
       run: |
-        version="$(echo '${{steps.date.outputs.date}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
-        archive="clip_share_server-${version}-linux_x86_64"
+        version="$VRSI"
+        echo VERSION="$VRSI" >> $GITHUB_ENV
+       archive="clip_share_server-${version}-linux_x86_64"
         echo ARCHIVE_NAME_NO_EXT="${archive}" >> $GITHUB_ENV
         echo ARCHIVE_NAME="${archive}.tar.gz" >> $GITHUB_ENV
 
@@ -98,7 +99,7 @@ jobs:
 
     - name: Set variables
       run: |
-        version="$(echo '${{steps.date.outputs.date}}' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
+        version="$VRSI"
         echo VERSION="$version" >> $GITHUB_ENV
         echo TAG="v${version}" >> $GITHUB_ENV
         echo TITLE="Version ${version}" >> $GITHUB_ENV
