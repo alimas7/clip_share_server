@@ -15,7 +15,7 @@ jobs:
     - name: Get current date
       id: date
       run: echo VRSI="$(date +'%Y%m%d.%H%M.%S')" >> $GITHUB_ENV
-        
+
     - name: Set version
       run: |
         echo VERSION="$VRSI" >> $GITHUB_ENV
@@ -53,7 +53,7 @@ jobs:
       run: |
         version="$VRSI"
         echo VERSION="$VRSI" >> $GITHUB_ENV
-       archive="clip_share_server-${version}-linux_x86_64"
+        archive="clip_share_server-${version}-linux_x86_64"
         echo ARCHIVE_NAME_NO_EXT="${archive}" >> $GITHUB_ENV
         echo ARCHIVE_NAME="${archive}.tar.gz" >> $GITHUB_ENV
 
