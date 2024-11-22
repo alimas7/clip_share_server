@@ -27,7 +27,7 @@ jobs:
 ###        done
 
   Build-and-Test:
-    if: false
+###    if: false
     uses: ./.github/workflows/build-test.yml
     permissions:
       contents: write
