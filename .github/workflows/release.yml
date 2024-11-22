@@ -53,28 +53,23 @@ jobs:
         echo ARCHIVE_NAME_NO_EXT="${archive}" >> $GITHUB_ENV
         echo ARCHIVE_NAME="${archive}.tar.gz" >> $GITHUB_ENV
 
-    - name: Build on Ubuntu 18
-      if: false
-      run: docker build -t clipshare:ubuntu18 -f docker/release/Dockerfile.ubuntu18 .
+###    - name: Build on Ubuntu 18
+###      run: docker build -t clipshare:ubuntu18 -f docker/release/Dockerfile.ubuntu18 .
 
-    - name: Build on Ubuntu 20
-      if: false
-      run: docker build -t clipshare:ubuntu20 -f docker/release/Dockerfile.ubuntu20 .
+###    - name: Build on Ubuntu 20
+###      run: docker build -t clipshare:ubuntu20 -f docker/release/Dockerfile.ubuntu20 .
 
-    - name: Build on Ubuntu 22
-      if: false
-      run: docker build -t clipshare:ubuntu22 -f docker/release/Dockerfile.ubuntu22 .
+###    - name: Build on Ubuntu 22
+###      run: docker build -t clipshare:ubuntu22 -f docker/release/Dockerfile.ubuntu22 .
 
     - name: Build on Ubuntu 24
       run: docker build -t clipshare:ubuntu24 -f docker/release/Dockerfile.ubuntu24 .
 
-    - name: Build on Arch Linux
-      if: false
-      run: docker build -t clipshare:arch -f docker/release/Dockerfile.arch .
+###    - name: Build on Arch Linux
+###      run: docker build -t clipshare:arch -f docker/release/Dockerfile.arch .
 
-    - name: Build on Fedora
-      if: false
-      run: docker build -t clipshare:fedora -f docker/release/Dockerfile.fedora .
+###    - name: Build on Fedora
+###      run: docker build -t clipshare:fedora -f docker/release/Dockerfile.fedora .
 
     - name: Copy binaries
       run: |
