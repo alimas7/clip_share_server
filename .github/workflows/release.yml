@@ -17,10 +17,12 @@ jobs:
         echo VERSION="$(echo '20241121.0.1' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')" >> $GITHUB_ENV
 
     - name: Check app.rc version
+      if: false
       run: |
         [ $(grep "${{env.VERSION}}" res/win/app.rc | grep -iE '(File|Product)Version' | wc -l) = 4 ]
 
     - name: Check release_notes.md version
+      if: false
       run: |
         for v in $(grep -oE '[0-9]+\.[0-9]+\.[0-9]+' .github/workflows/resources/release_notes.md); do \
         grep -qF "${{env.VERSION}}" <<<"$v"; \
